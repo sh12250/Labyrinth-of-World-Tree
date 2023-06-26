@@ -57,16 +57,189 @@ namespace LabyrinthOfWorldTree
         public void JobSelectScene()
         {
             Jobs value = new Jobs();
+            int curJodID = 0;
 
-            ConsoleKeyInfo input = Console.ReadKey();
+            switch (PickedJobID)
+            {
+                case 0:
+                    Console.SetCursorPosition(0, 0);
 
-            PickedJobID = 1;
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　기　사　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    break;
+                case 1:
+                    Console.SetCursorPosition(0, 0);
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　해　적　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    break;
+                case 2:
+                    Console.SetCursorPosition(0, 0);
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　점　성　술　사　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+                    Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
+
+                    break;
+            }
 
             while (true)
             {
-                switch (PickedJobID)
+                ConsoleKeyInfo input = Console.ReadKey();
+
+                switch (input.KeyChar)
                 {
-                    case 1:
+                    case 'a':
+                    case 'A':
+                    case 'ㅁ':
+                        curJodID -= 1;
+
+                        if (curJodID == -1)
+                        {
+                            curJodID = 2;
+                        }
+
+                        Console.WriteLine(value.JobNames[curJodID]);
+
+                        break;
+                    case 'd':
+                    case 'D':
+                    case 'ㅇ':
+                        curJodID += 1;
+
+                        if (curJodID == 3)
+                        {
+                            curJodID = 0;
+                        }
+
+                        Console.WriteLine(value.JobNames[curJodID]);
+
+                        break;
+                    case 'e':
+                    case 'E':
+                    case 'ㄷ':
+                        PickedJobID = curJodID;
+
+                        Console.WriteLine("{0}를 선택하셨습니다", value.JobNames[PickedJobID]);
+
+                        break;
+                    default:
+                        Console.WriteLine("이상한 키 입력");
+
+                        break;
+                }
+
+                switch (curJodID)
+                {
+                    case 0:
+                        Console.SetCursorPosition(0, 0);
+
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
@@ -106,7 +279,9 @@ namespace LabyrinthOfWorldTree
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
 
                         break;
-                    case 2:
+                    case 1:
+                        Console.SetCursorPosition(0, 0);
+
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
@@ -146,7 +321,9 @@ namespace LabyrinthOfWorldTree
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
 
                         break;
-                    case 3:
+                    case 2:
+                        Console.SetCursorPosition(0, 0);
+
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
                         Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
@@ -188,46 +365,13 @@ namespace LabyrinthOfWorldTree
                         break;
                 }
 
-
-
-                switch (input.KeyChar)
+                if (input.KeyChar == 'e' || input.KeyChar == 'E' || input.KeyChar == 'ㄷ')
                 {
-                    case 'a':
-                        PickedJobID--;
+                    Console.WriteLine("{0}를 선택하셨습니다", value.JobNames[PickedJobID]);
 
-                        if (PickedJobID == 0)
-                        {
-                            PickedJobID = 3;
-                        }
-
-                        Console.WriteLine(value.JobNames[PickedJobID]);
-
-                        break;
-                    case 'd':
-                        PickedJobID++;
-
-                        if (PickedJobID == 4)
-                        {
-                            PickedJobID = 1;
-                        }
-
-                        Console.WriteLine(value.JobNames[PickedJobID]);
-
-                        break;
-                    case '\n':
-                        Console.WriteLine(value.JobNames[PickedJobID] + "를 선택하셨습니다");
-                        break;
-                    default:
-                        Console.WriteLine(value.JobNames[PickedJobID]);
-
-                        break;
-                }
-
-                if (input.KeyChar == '\n')
-                {
                     break;
                 }
-            }
+            }           // while()
         }
     }
 }

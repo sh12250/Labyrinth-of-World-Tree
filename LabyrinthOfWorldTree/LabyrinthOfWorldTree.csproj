@@ -43,11 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigCat.cs" />
+    <Compile Include="Bitish.cs" />
+    <Compile Include="Durian.cs" />
+    <Compile Include="ForestFrog.cs" />
     <Compile Include="Jobs.cs" />
+    <Compile Include="MonsterBase.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TitleScene.cs" />
+    <Compile Include="Scenes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
