@@ -8,12 +8,14 @@ namespace LabyrinthOfWorldTree
 {
     public class Player
     {
+        public List<QuestBase> QuestList { get; private set; }
         public string Name { get; private set; }
         public int JobID { get; private set; } // 직업 번호
-        public int Level { get; private set; } // 직업 번호
-        public int MaxHealth { get; private set; } // 체력 0이 되면 죽는다
+        public int Level { get; private set; }
+        public int MaxHealth { get; private set; } // 최대 체력
         public int Health { get; private set; } // 체력 0이 되면 죽는다
-        // public int mp
+        // public int MaxMana { get; private set; }
+        // public int Mana { get; private set; }
         public int Str { get; private set; } // 직접 공격력에 관여
         public int Tec { get; private set; } // 간접 공격력에 관여
         public int Vit { get; private set; } // 직접 방어력, 체력에 관여
@@ -22,7 +24,19 @@ namespace LabyrinthOfWorldTree
 
         public int MaxEXP { get; private set; }
         public int EXP { get; private set; }
+        // public int Gold { get; private set; }
 
+
+        public Player()
+        {
+            QuestList = new List<QuestBase>();
+        }
+
+
+        public void AcceptQuest(QuestBase theQuest)
+        {
+            QuestList.Add(theQuest);
+        }
 
         public void SetPlayerStatus()
         {
@@ -170,7 +184,7 @@ namespace LabyrinthOfWorldTree
             string nameInput = Console.ReadLine();
             Name = nameInput;
 
-            if(Name == "")
+            if (Name == "")
             {
                 Name = "당신";
             }
@@ -185,7 +199,7 @@ namespace LabyrinthOfWorldTree
         {
             damage -= Vit * 2;
 
-            if (damage < 0)
+            if (damage <= 0)
             {
                 damage = 1;
             }

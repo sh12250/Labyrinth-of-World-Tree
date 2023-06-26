@@ -11,6 +11,8 @@ namespace LabyrinthOfWorldTree
         public string Name { get; private set; }
         public int MaxHealth { get; private set; }
         public int Health { get; private set; }
+        // public int MaxMana { get; private set; }
+        // public int Mana { get; private set; }
         public int Atk { get; private set; }
         public int Def { get; private set; }
         public int Exp { get; private set; }
@@ -30,7 +32,7 @@ namespace LabyrinthOfWorldTree
         {
             damage -= Def;
 
-            if (damage < 0)
+            if (damage <= 0)
             {
                 damage = 1;
             }
