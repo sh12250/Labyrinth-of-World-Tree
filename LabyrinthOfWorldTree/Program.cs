@@ -15,6 +15,7 @@ namespace LabyrinthOfWorldTree
 
             Scenes scenes = new Scenes();
             Player player = new Player();
+            Pub pub = new Pub();
 
             scenes.TitleScene();
 
@@ -22,12 +23,19 @@ namespace LabyrinthOfWorldTree
 
             scenes.JobSelectScene();
 
-            player.SetPlayerJobID(scenes.PickedJobID);
+            player.SetPlayerJobID(scenes.SelectedJobID);
 
             player.SetPlayerStatus();
 
-            Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}", player.Name, player.Str, player.Tec, player.Vit, player.Wis, player.Luc);
+            pub.SelectQuest();
 
+            if (pub.SelectedQuestID != -1)
+            {
+                player.AcceptQuest(pub.QuestBoard[pub.SelectedQuestID]);
+            }
+
+            // Console.SetCursorPosition(0, 32);
+            // Console.WriteLine(player.QuestList[0].QuestName);
 
 
 

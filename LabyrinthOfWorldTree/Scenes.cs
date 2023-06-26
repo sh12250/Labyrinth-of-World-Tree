@@ -8,7 +8,7 @@ namespace LabyrinthOfWorldTree
 {
     public class Scenes
     {
-        public int PickedJobID { get; private set; }
+        public int SelectedJobID { get; private set; }
 
         public void TitleScene()
         {
@@ -77,8 +77,6 @@ namespace LabyrinthOfWorldTree
                             curJodID = 2;
                         }
 
-                        Console.WriteLine(value.JobNames[curJodID]);
-
                         break;
                     case 'd':
                     case 'D':
@@ -90,20 +88,14 @@ namespace LabyrinthOfWorldTree
                             curJodID = 0;
                         }
 
-                        Console.WriteLine(value.JobNames[curJodID]);
-
                         break;
                     case 'e':
                     case 'E':
                     case 'ㄷ':
-                        PickedJobID = curJodID;
-
-                        Console.WriteLine("{0}를 선택하셨습니다", value.JobNames[PickedJobID]);
+                        SelectedJobID = curJodID;
 
                         break;
                     default:
-                        Console.WriteLine("이상한 키 입력");
-
                         break;
                 }
 
@@ -111,7 +103,7 @@ namespace LabyrinthOfWorldTree
 
                 if (input.KeyChar == 'e' || input.KeyChar == 'E' || input.KeyChar == 'ㄷ')
                 {
-                    Console.WriteLine("{0}를 선택하셨습니다", value.JobNames[PickedJobID]);
+                    Console.WriteLine("{0}를 선택하셨습니다", value.JobNames[SelectedJobID]);
 
                     break;
                 }
@@ -249,7 +241,6 @@ namespace LabyrinthOfWorldTree
 
                     break;
             }
-
         }
     }
 }
