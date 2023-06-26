@@ -12,5 +12,9 @@ namespace LabyrinthOfWorldTree
         {
             base.SetMonsterStatus("삼림개구리", 72, 6, 5, 73);
         }
+        public override void RecieveDamage(int damage)
+        {
+            base.RecieveDamage(damage);
+        }
     }
 }

@@ -8,8 +8,10 @@ namespace LabyrinthOfWorldTree
 {
     public class Player
     {
-        public string Name {  get; private set; }
+        public string Name { get; private set; }
         public int JobID { get; private set; } // 직업 번호
+        public int Level { get; private set; } // 직업 번호
+        public int MaxHealth { get; private set; } // 체력 0이 되면 죽는다
         public int Health { get; private set; } // 체력 0이 되면 죽는다
         // public int mp
         public int Str { get; private set; } // 직접 공격력에 관여
@@ -22,18 +24,11 @@ namespace LabyrinthOfWorldTree
         public int EXP { get; private set; }
 
 
-        public Player()
-        {
-            SetPlayerName();
-        }
-
         public void SetPlayerStatus()
         {
-            Health = 50;
-
             switch (JobID)
             {
-                case 1:
+                case 0:
                     Str = 8;
                     Tec = 4;
                     Vit = 8;
@@ -41,7 +36,7 @@ namespace LabyrinthOfWorldTree
                     Luc = 4;
 
                     break;
-                case 2:
+                case 1:
                     Str = 6;
                     Tec = 8;
                     Vit = 4;
@@ -49,7 +44,7 @@ namespace LabyrinthOfWorldTree
                     Luc = 8;
 
                     break;
-                case 3:
+                case 2:
                     Str = 4;
                     Tec = 8;
                     Vit = 4;
@@ -59,37 +54,54 @@ namespace LabyrinthOfWorldTree
                     break;
             }
 
-            Health += Vit * 5;
-
+            Level = 1;
+            SetPlayerMaxHealth();
+            Health = MaxHealth;
             MaxEXP = 100;
             EXP = 0;
-
         }
-
-
 
         public void LevelUpPlayer()
         {
             Jobs values = new Jobs();
             Random random = new Random();
 
-            EXP -= MaxEXP;
-
-            Str += 1;
-            Tec += 1;
-            Vit += 1;
-            Wis += 1;
-            Luc += 1;
-
-            switch(JobID)
+            switch (JobID)
             {
-                case 1:
-                    if(random.Next(100) < values.StrUpRate[JobID])
+                case 0:
+                    if (random.Next(100) < values.StrUpRate[JobID])
                     {
                         Str += 1;
                     }
 
-                    if(random.Next(100) < values.TecUpRate[JobID])
+                    if (random.Next(100) < values.TecUpRate[JobID])
+                    {
+                        Tec += 1;
+                    }
+
+                    if (random.Next(100) < values.VitUpRate[JobID])
+                    {
+                        Vit += 1;
+                    }
+
+                    if (random.Next(100) < values.WisUpRate[JobID])
+                    {
+                        Luc += 1;
+                    }
+
+                    if (random.Next(100) < values.LucUpRate[JobID])
+                    {
+                        Wis += 1;
+                    }
+
+                    break;
+                case 1:
+                    if (random.Next(100) < values.StrUpRate[JobID])
+                    {
+                        Str += 1;
+                    }
+
+                    if (random.Next(100) < values.TecUpRate[JobID])
                     {
                         Tec += 1;
                     }
@@ -137,47 +149,49 @@ namespace LabyrinthOfWorldTree
                     }
 
                     break;
-                case 3:
-                    if (random.Next(100) < values.StrUpRate[JobID])
-                    {
-                        Str += 1;
-                    }
-
-                    if (random.Next(100) < values.TecUpRate[JobID])
-                    {
-                        Tec += 1;
-                    }
-
-                    if (random.Next(100) < values.VitUpRate[JobID])
-                    {
-                        Vit += 1;
-                    }
-
-                    if (random.Next(100) < values.WisUpRate[JobID])
-                    {
-                        Luc += 1;
-                    }
-
-                    if (random.Next(100) < values.LucUpRate[JobID])
-                    {
-                        Wis += 1;
-                    }
-
-                    break;
             }
+
+            SetPlayerMaxHealth();
+            Health = MaxHealth;
+            EXP -= MaxEXP;
+            MaxEXP += (int)(MaxEXP * 0.1f);
+        }
+
+        public void SetPlayerMaxHealth()
+        {
+            MaxHealth = 50 + Vit * 5 + (Level - 1) * 5;
         }
 
         public void SetPlayerName()
         {
+            Console.SetCursorPosition(21, 14);
+            Console.WriteLine("이름을　정해주세요");
+            Console.SetCursorPosition(21, 16);
             string nameInput = Console.ReadLine();
             Name = nameInput;
+
+            if(Name == "")
+            {
+                Name = "당신";
+            }
         }
 
         public void SetPlayerJobID(int jobNum)
         {
             JobID = jobNum;
         }
-    }                                       
-}                                           
-                                            
-                                            
+
+        public void RecieveDamage(int damage)
+        {
+            damage -= Vit * 2;
+
+            if (damage < 0)
+            {
+                damage = 1;
+            }
+
+            Health -= damage;
+        }
+    }
+}
+

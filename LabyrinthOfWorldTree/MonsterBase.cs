@@ -28,7 +28,14 @@ namespace LabyrinthOfWorldTree
 
         public virtual void RecieveDamage(int damage)
         {
-            Health -= damage - Def;
+            damage -= Def;
+
+            if (damage < 0)
+            {
+                damage = 1;
+            }
+
+            Health -= damage;
         }
     }
 }
