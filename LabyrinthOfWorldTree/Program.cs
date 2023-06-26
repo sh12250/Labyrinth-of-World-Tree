@@ -28,6 +28,9 @@ namespace LabyrinthOfWorldTree
 
             Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}", player.Name, player.Str, player.Tec, player.Vit, player.Wis, player.Luc);
 
+
+
+
             Console.ReadLine();
             Console.Clear();
         }
