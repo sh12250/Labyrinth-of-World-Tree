@@ -20,5 +20,9 @@ namespace LabyrinthOfWorldTree
         {
             base.SetQuestStatus(name_, target_, targetNum_, exp_);
         }
+        public override void PlusCount()
+        {
+            base.PlusCount();
+        }
     }
 }

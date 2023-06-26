@@ -23,5 +23,10 @@ namespace LabyrinthOfWorldTree
             CurrentCount = 0;
             RewardEXP = exp_;
         }
+
+        public virtual void PlusCount()
+        {
+            CurrentCount++;
+        }
     }
 }

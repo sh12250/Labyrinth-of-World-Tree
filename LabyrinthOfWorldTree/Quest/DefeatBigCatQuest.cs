@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace LabyrinthOfWorldTree
 {
-    public class DefeatDurianQuest : QuestBase
+    public class DefeatBigCatQuest : QuestBase
     {
-        public DefeatDurianQuest()
+        public DefeatBigCatQuest() 
         {
-            Durian value = new Durian();
+            BigCat value = new BigCat();
 
-            SetQuestStatus("소중한 내 코", value.Name, 10, 630);
+            SetQuestStatus("초보살해자", value.Name, 1, 1000);
         }
 
         public override void SetQuestStatus(string name_, string target_, int targetNum_, int exp_)
         {
             base.SetQuestStatus(name_, target_, targetNum_, exp_);
+        }
+        public override void PlusCount()
+        {
+            base.PlusCount();
         }
     }
 }
