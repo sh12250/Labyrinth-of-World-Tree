@@ -48,9 +48,8 @@ namespace LabyrinthOfWorldTree
 
             while (true)
             {
-                if (Monsters.Count == 0)
+                if (Monsters.Count == 0 || thePlayer.Health == 0)
                 {
-
                     break;
                 }
 
@@ -60,6 +59,11 @@ namespace LabyrinthOfWorldTree
                     Console.Write(Monsters[i].Name);
                     Console.SetCursorPosition((64 / (Monsters.Count + 1)) + ((64 / (Monsters.Count + 1)) * i), 16);
                     Console.Write("{0} / {1}", Monsters[i].Health, Monsters[i].MaxHealth);
+
+                    Console.SetCursorPosition(30, 30);
+                    Console.Write(thePlayer.Name);
+                    Console.SetCursorPosition(30, 31);
+                    Console.Write("{0} / {1}", thePlayer.Health, thePlayer.MaxHealth);
                 }
 
                 Console.SetCursorPosition((64 / (Monsters.Count + 1)) + ((64 / (Monsters.Count + 1)) * select), 18);
@@ -110,20 +114,62 @@ namespace LabyrinthOfWorldTree
 
                         Monsters[select].RecieveDamage(thePlayer.GetDamage());
 
-
                         Console.SetCursorPosition(24, 24);
                         Console.Write("{0}을 공격했다", Monsters[select].Name);
 
                         Console.SetCursorPosition(24, 25);
                         Console.Write("{0}에게 {1}의 데미지를 입혔다", Monsters[select].Name, thePlayer.GetDamage() - Monsters[select].Def);
 
-                        if(Monsters[select].Health == 0)
+                        Console.ReadLine();
+                        Console.Clear();
+
+                        if (Monsters[select].Health == 0)
                         {
+                            if(thePlayer.QuestList.Count > 0)
+                            {
+                                for(int i = 0; i < thePlayer.QuestList.Count; i++)
+                                {
+                                    if (thePlayer.QuestList[i].TargetName == Monsters[select].Name)
+                                    {
+                                        thePlayer.QuestList[i].PlusCount();
+                                        Console.Write("{0}", thePlayer.QuestList[i].CurrentCount);
+                                    }
+                                }
+                            }
+
                             Monsters.Remove(Monsters[select]);
                         }
 
-                        Console.ReadLine();
-                        Console.Clear();
+                        for(int i = 0; i < Monsters.Count; i++)
+                        {
+                            int monsterDamage = Monsters[i].Atk - (thePlayer.Vit * 2);
+
+                            if(monsterDamage <= 0)
+                            {
+                                monsterDamage = 1;
+                            }
+
+                            Console.SetCursorPosition((64 / (Monsters.Count + 1)) + ((64 / (Monsters.Count + 1)) * i), 15);
+                            Console.Write(Monsters[i].Name);
+                            Console.SetCursorPosition((64 / (Monsters.Count + 1)) + ((64 / (Monsters.Count + 1)) * i), 16);
+                            Console.Write("{0} / {1}", Monsters[i].Health, Monsters[i].MaxHealth);
+
+                            Console.SetCursorPosition(30, 30);
+                            Console.Write(thePlayer.Name);
+                            Console.SetCursorPosition(30, 31);
+                            Console.Write("{0} / {1}", thePlayer.Health, thePlayer.MaxHealth);
+
+                            thePlayer.RecieveDamage(Monsters[i].Atk);
+
+                            Console.SetCursorPosition(24, 24);
+                            Console.Write("{0}의 공격", Monsters[i].Name);
+
+                            Console.SetCursorPosition(24, 25);
+                            Console.Write("{0}에게 {1}의 데미지를 입었다", Monsters[i].Name, monsterDamage);
+
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
 
                         break;
                 }
