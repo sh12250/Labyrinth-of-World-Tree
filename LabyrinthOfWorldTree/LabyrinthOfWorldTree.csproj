@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle.cs" />
     <Compile Include="Monster\BigCat.cs" />
     <Compile Include="Monster\Bitish.cs" />
     <Compile Include="Pub.cs" />
@@ -58,7 +59,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest\QuestBase.cs" />
+    <Compile Include="RandomMap.cs" />
     <Compile Include="Scenes.cs" />
+    <Compile Include="Town.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

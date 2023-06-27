@@ -14,8 +14,9 @@ namespace LabyrinthOfWorldTree
             Console.CursorVisible = false;
 
             Scenes scenes = new Scenes();
+            RandomMap map = new RandomMap();
             Player player = new Player();
-            Pub pub = new Pub();
+            Town town = new Town();
 
             scenes.TitleScene();
 
@@ -27,20 +28,7 @@ namespace LabyrinthOfWorldTree
 
             player.SetPlayerStatus();
 
-            pub.SelectQuest();
-
-            if (pub.SelectedQuestID != -1)
-            {
-                player.AcceptQuest(pub.QuestBoard[pub.SelectedQuestID]);
-            }
-
-            // Console.SetCursorPosition(0, 32);
-            // Console.WriteLine(player.QuestList[0].QuestName);
-
-
-
-            Console.ReadLine();
-            Console.Clear();
+            town.TownScene(player);
         }
     }
 }

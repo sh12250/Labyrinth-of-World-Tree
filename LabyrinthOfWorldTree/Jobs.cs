@@ -15,6 +15,7 @@ namespace LabyrinthOfWorldTree
         public int[] WisUpRate { get; private set; }
         public int[] LucUpRate { get; private set; }
 
+
         public Jobs()
         {
             JobNames = new string[] { "기사", "해적", "점성술사" };
