@@ -14,8 +14,8 @@ namespace LabyrinthOfWorldTree
             Console.CursorVisible = false;
 
             Scenes scenes = new Scenes();
-            RandomMap map = new RandomMap();
             Player player = new Player();
+            Battle battle = new Battle();
             Town town = new Town();
 
             scenes.TitleScene();
@@ -28,7 +28,8 @@ namespace LabyrinthOfWorldTree
 
             player.SetPlayerStatus();
 
-            town.TownScene(player);
+            battle.SetMonsters();
+            battle.RunBattle(player);
         }
     }
 }
