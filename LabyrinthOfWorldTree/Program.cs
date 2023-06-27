@@ -28,8 +28,7 @@ namespace LabyrinthOfWorldTree
 
             player.SetPlayerStatus();
 
-            battle.SetMonsters();
-            battle.RunBattle(player);
+            town.TownScene(player);
         }
     }
 }
