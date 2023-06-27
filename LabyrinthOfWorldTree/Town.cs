@@ -252,6 +252,83 @@ namespace LabyrinthOfWorldTree
                         }
                     }
                 }
+                else if(Select == 2)
+                {
+                    LastInput = '0';
+                    Select = -1;
+
+                    Console.SetCursorPosition(10, 16);
+                    Console.Write("미궁 1층");
+
+                    Console.SetCursorPosition(8, 16 + choice);
+                    Console.Write("▷");
+
+                    Console.SetCursorPosition(0, 32);
+                    input = Console.ReadKey();
+
+                    Console.SetCursorPosition(8, 16 + choice);
+                    Console.Write("　");
+
+                    switch (input.KeyChar)
+                    {
+                        case 'w':
+                        case 'W':
+                        case 'ㅈ':
+                            choice--;
+
+                            if (choice == -1)
+                            {
+                                choice = 0;
+                            }
+
+                            Console.SetCursorPosition(8, 16 + choice);
+                            Console.Write("▷");
+
+                            break;
+                        case 's':
+                        case 'S':
+                        case 'ㄴ':
+                            choice++;
+
+                            if (choice == 1)
+                            {
+                                choice = 0;
+                            }
+
+                            Console.SetCursorPosition(8, 16 + choice);
+                            Console.Write("▷");
+
+                            break;
+                        case 'e':
+                        case 'E':
+                        case 'ㄷ':
+                            Console.SetCursorPosition(8, 16 + choice);
+                            Console.Write("▶");
+
+                            Console.WriteLine("미궁 1층에 입장합니다");
+
+                            Select = choice;
+
+                            break;
+                        case 'q':
+                        case 'Q':
+                        case 'ㅂ':
+                            Console.SetCursorPosition(10, 19);
+                            Console.Write("마을로 들어갑니다");
+
+                            Console.ReadLine();
+                            Console.Clear();
+
+                            LastInput = 'q';
+
+                            break;
+                    }
+                }
+
+                if (LastInput == 'q')
+                {
+                    break;
+                }
             }           // while()
         }
     }
