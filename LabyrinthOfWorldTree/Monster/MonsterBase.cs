@@ -28,6 +28,11 @@ namespace LabyrinthOfWorldTree
             Exp = exp_;
         }
 
+        public virtual int GetDamage()
+        {
+            return Atk;
+        }
+
         public virtual void RecieveDamage(int damage)
         {
             damage -= Def;
@@ -38,6 +43,11 @@ namespace LabyrinthOfWorldTree
             }
 
             Health -= damage;
+
+            if(Health <= 0)
+            {
+                Health = 0;
+            }
         }
     }
 }

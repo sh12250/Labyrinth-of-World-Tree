@@ -43,6 +43,24 @@ namespace LabyrinthOfWorldTree
             }
         }
 
+        public int GetDamage()
+        {
+            if(JobID == 0)
+            {
+                return Str + Vit / 2;
+            }
+            else if(JobID == 1)
+            {
+                return Tec + Luc / 2;
+            }
+            else if(JobID == 2)
+            {
+                return Tec + Wis / 2;
+            }
+
+            return 0;
+        }
+
         public void SetPlayerStatus()
         {
             switch (JobID)
@@ -210,6 +228,11 @@ namespace LabyrinthOfWorldTree
             }
 
             Health -= damage;
+
+            if(Health <= 0)
+            {
+                Health = 0;
+            }
         }
     }
 }
