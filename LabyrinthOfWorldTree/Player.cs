@@ -29,13 +29,18 @@ namespace LabyrinthOfWorldTree
 
         public Player()
         {
-            QuestList = new List<QuestBase>();
+            // QuestList = new List<QuestBase>();
         }
 
 
-        public void AcceptQuest(QuestBase theQuest)
+        public void SetQuestList(List<QuestBase> theQuestBoard)
         {
-            QuestList.Add(theQuest);
+            QuestList = null;
+
+            if (theQuestBoard != null)
+            {
+                QuestList = theQuestBoard;
+            }
         }
 
         public void SetPlayerStatus()
