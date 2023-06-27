@@ -18,7 +18,13 @@ namespace LabyrinthOfWorldTree
 
         public string Wall { get; private set; }
         public string Blank { get; private set; }
+        public string UpStair { get; private set; }
+        public string DownStair { get; private set; }
         public string Treasure { get; private set; }
+        public string Character { get; private set; }
+
+        public int PlayerXPos { get; private set; }
+        public int PlayerYPos { get; private set; }
 
         public RandomMap()
         {
@@ -34,19 +40,32 @@ namespace LabyrinthOfWorldTree
 
             Wall = "■";
             Blank = "　";
+            UpStair = "▨";
+            DownStair = "▧";
             Treasure = "◈";
+            Character = "◎";
 
-            for(int y = 0; y < MapSize; y++)
+            for (int y = 0; y < MapSize; y++)
             {
-                for(int x = 0; x < MapSize; x++)
+                for (int x = 0; x < MapSize; x++)
                 {
                     theMap[y, x] = Wall;
                 }
             }
 
             LocateRooms();
+            LocateUpStair();
+            LocateCharacter();
             LocateTreasure();
             LocateRoads();
+        }
+
+        public void SetPlayerPosition(int xPos, int yPos)
+        {
+            theMap[PlayerYPos, PlayerXPos] = Blank;
+            theMap[yPos, xPos] = Character;
+            PlayerYPos = yPos;
+            PlayerXPos = xPos;
         }
 
         public void LocateRooms()
@@ -57,7 +76,7 @@ namespace LabyrinthOfWorldTree
 
             int rooomShape;
 
-            while(roomCount < 12)
+            while (roomCount < 12)
             {
                 RoomCoreX.Add(random.Next(2, MapSize - 2));
                 RoomCoreY.Add(random.Next(2, MapSize - 2));
@@ -151,6 +170,28 @@ namespace LabyrinthOfWorldTree
             }
         }
 
+        public void LocateUpStair()
+        {
+            Random random = new Random();
+
+            int randIdx = random.Next(0, 12);
+
+            theMap[RoomCoreY[randIdx], RoomCoreX[randIdx]] = UpStair;
+        }
+
+        public void LocateCharacter()
+        {
+            for(int i = 0;i < 12; i++)
+            {
+                if(theMap[RoomCoreY[i], RoomCoreX[i]] == UpStair)
+                {
+                    theMap[RoomCoreY[i] + 1, RoomCoreX[i]] = Character;
+                    PlayerYPos = RoomCoreY[i] + 1;
+                    PlayerXPos = RoomCoreX[i];
+                }
+            }
+        }
+
         public void LocateTreasure()
         {
             Random random = new Random();
@@ -162,7 +203,7 @@ namespace LabyrinthOfWorldTree
                 int randX = random.Next(1, MapSize - 1);
                 int randY = random.Next(1, MapSize - 1);
 
-                while (theMap[randY, randX] != Blank)
+                while (theMap[randY, randX] != Blank || theMap[randY - 1, randX] == UpStair)
                 {
                     randX = random.Next(1, MapSize - 1);
                     randY = random.Next(1, MapSize - 1);
@@ -184,7 +225,7 @@ namespace LabyrinthOfWorldTree
             int endX;
             int endY;
 
-            for(int roomNum = 0; roomNum < 12; roomNum++)
+            for (int roomNum = 0; roomNum < 12; roomNum++)
             {
                 startX = RoomCoreX[roomNum];
                 startY = RoomCoreY[roomNum];
@@ -199,14 +240,14 @@ namespace LabyrinthOfWorldTree
                 endX = RoomCoreX[randIdx];
                 endY = RoomCoreY[randIdx];
 
-                if((endX - startX) * (endX - startX) > (endY - startY) * (endY - startY)) // Y값 차이보다 X값 차이가 클 때
+                if ((endX - startX) * (endX - startX) > (endY - startY) * (endY - startY)) // Y값 차이보다 X값 차이가 클 때
                 {
-                    if(startX > endX)
+                    if (startX > endX)
                     {
                         while (startX != endX)
                         {
                             startX -= 1;
-                            if(theMap[startY, startX] == Wall)
+                            if (theMap[startY, startX] == Wall)
                             {
                                 theMap[startY, startX] = Blank;
                             }
@@ -235,7 +276,7 @@ namespace LabyrinthOfWorldTree
                             }
                         }
                     }
-                    else if(startX < endX)
+                    else if (startX < endX)
                     {
                         while (startX != endX)
                         {
@@ -269,9 +310,9 @@ namespace LabyrinthOfWorldTree
                             }
                         }
                     }
-                    else if(startX == endX)
+                    else if (startX == endX)
                     {
-                        if(startY > endY)
+                        if (startY > endY)
                         {
                             while (startY != endY)
                             {
@@ -282,7 +323,7 @@ namespace LabyrinthOfWorldTree
                                 }
                             }
                         }
-                        else if(startY < endY)
+                        else if (startY < endY)
                         {
                             while (startY != endY)
                             {
@@ -365,7 +406,7 @@ namespace LabyrinthOfWorldTree
                             }
                         }
                     }
-                    else if(startY == endY)
+                    else if (startY == endY)
                     {
                         if (startX > endX)
                         {
@@ -396,17 +437,35 @@ namespace LabyrinthOfWorldTree
 
         public void PrintTheMap()
         {
-            for(int y =  0; y < MapSize; y++)
+            for (int y = 0; y < MapSize; y++)
             {
-                for(int x = 0; x < MapSize; x++)
+                for (int x = 0; x < MapSize; x++)
                 {
-                    if (theMap[y,x] == Treasure)
+                    if (theMap[y, x] == Treasure)
                     {
                         Console.SetCursorPosition((x * 2) + 63, y);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(theMap[y, x]);
                     }
-                    else
+                    else if (theMap[y, x] == Character)
+                    {
+                        Console.SetCursorPosition((x * 2) + 63, y);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(theMap[y, x]);
+                    }
+                    else if (theMap[y, x] == UpStair)
+                    {
+                        Console.SetCursorPosition((x * 2) + 63, y);
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.Write(theMap[y, x]);
+                    }
+                    else if (theMap[y, x] == DownStair)
+                    {
+                        Console.SetCursorPosition((x * 2) + 63, y);
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write(theMap[y, x]);
+                    }
+                    else 
                     {
                         Console.SetCursorPosition((x * 2) + 63, y);
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -416,7 +475,7 @@ namespace LabyrinthOfWorldTree
                 Console.WriteLine();
             }
 
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
         }
     }
 }
