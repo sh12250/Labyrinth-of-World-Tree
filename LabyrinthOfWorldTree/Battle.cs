@@ -116,13 +116,13 @@ namespace LabyrinthOfWorldTree
                         Console.SetCursorPosition((64 / (Monsters.Count + 1)) + ((64 / (Monsters.Count + 1)) * select), 18);
                         Console.Write("▲");
 
-                        Monsters[select].RecieveDamage(thePlayer.GetDamage());
+                        Monsters[select].RecieveDamage(thePlayer.Atk);
 
                         Console.SetCursorPosition(24, 24);
                         Console.Write("{0}을 공격했다", Monsters[select].Name);
 
                         Console.SetCursorPosition(24, 25);
-                        Console.Write("{0}에게 {1}의 데미지를 입혔다", Monsters[select].Name, thePlayer.GetDamage() - Monsters[select].Def);
+                        Console.Write("{0}에게 {1}의 데미지를 입혔다", Monsters[select].Name, thePlayer.Atk - Monsters[select].Def);
 
                         Console.ReadLine();
                         Console.Clear();
@@ -142,6 +142,7 @@ namespace LabyrinthOfWorldTree
                             }
 
                             Monsters.Remove(Monsters[select]);
+                            select = 0;
                         }
 
                         for(int i = 0; i < Monsters.Count; i++)

@@ -16,6 +16,10 @@ namespace LabyrinthOfWorldTree
         public int Level { get; private set; }
         public int MaxHealth { get; private set; } // 최대 체력
         public int Health { get; private set; } // 체력 0이 되면 죽는다
+
+        public int Atk { get;private set; }
+        public int Def { get;private set; }
+
         // public int MaxMana { get; private set; }
         // public int Mana { get; private set; }
         public int Str { get; private set; } // 직접 공격력에 관여
@@ -45,24 +49,6 @@ namespace LabyrinthOfWorldTree
             }
         }
 
-        public int GetDamage()
-        {
-            if(JobID == 0)
-            {
-                return Str + Vit;
-            }
-            else if(JobID == 1)
-            {
-                return Tec + Luc;
-            }
-            else if(JobID == 2)
-            {
-                return Tec + Wis;
-            }
-
-            return 0;
-        }
-
         public void SetPlayerStatus()
         {
             switch (JobID)
@@ -74,6 +60,9 @@ namespace LabyrinthOfWorldTree
                     Wis = 6;
                     Luc = 4;
 
+                    Atk = Str + Vit;
+                    Def = Vit * 2;
+
                     break;
                 case 1:
                     Str = 6;
@@ -82,6 +71,9 @@ namespace LabyrinthOfWorldTree
                     Wis = 4;
                     Luc = 8;
 
+                    Atk = Tec + Luc;
+                    Def = Vit * 2;
+
                     break;
                 case 2:
                     Str = 4;
@@ -89,6 +81,9 @@ namespace LabyrinthOfWorldTree
                     Vit = 4;
                     Wis = 8;
                     Luc = 6;
+
+                    Atk = Tec + Wis;
+                    Def = Vit * 2;
 
                     break;
             }
@@ -222,11 +217,11 @@ namespace LabyrinthOfWorldTree
 
         public void RecieveDamage(int damage)
         {
-            damage -= Vit * 2;
+            damage -= Def;
 
             if (damage <= 0)
             {
-                damage = 1;
+                damage = 0;
             }
 
             Health -= damage;

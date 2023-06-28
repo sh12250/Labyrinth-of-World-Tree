@@ -13,7 +13,9 @@ namespace LabyrinthOfWorldTree
             Console.SetWindowSize(125, 40);
             Console.CursorVisible = false;
 
-            Scenes scenes = new Scenes();
+            Scenes scenes = new Scenes(); // MaxHp = 100, Hp = MaxHp
+            
+            
             Player player = new Player();
             Battle battle = new Battle();
             Town town = new Town();

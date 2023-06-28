@@ -23,6 +23,7 @@ namespace LabyrinthOfWorldTree
         {
             LastInput = '0';
             Select = -1;
+            thePlayer.SetPlayerMaxHealth();
 
             int choice = 0;
 
@@ -628,6 +629,7 @@ namespace LabyrinthOfWorldTree
 
                                 if (LastInput == 'q')
                                 {
+                                    Console.Clear();
                                     break;
                                 }
                             }           // while() 탐험

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Battle.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="ItemBase.cs" />
     <Compile Include="Monster\BigCat.cs" />
     <Compile Include="Monster\Bitish.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Quest\QuestBase.cs" />
     <Compile Include="RandomMap.cs" />
     <Compile Include="Scenes.cs" />
+    <Compile Include="Shop.cs" />
     <Compile Include="Town.cs" />
   </ItemGroup>
   <ItemGroup>
