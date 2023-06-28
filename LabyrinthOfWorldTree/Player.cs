@@ -9,6 +9,8 @@ namespace LabyrinthOfWorldTree
     public class Player
     {
         public List<QuestBase> QuestList { get; private set; }
+        
+
         public string Name { get; private set; }
         public int JobID { get; private set; } // 직업 번호
         public int Level { get; private set; }
@@ -29,7 +31,7 @@ namespace LabyrinthOfWorldTree
 
         public Player()
         {
-            // QuestList = new List<QuestBase>();
+            QuestList = new List<QuestBase>();
         }
 
 
@@ -47,15 +49,15 @@ namespace LabyrinthOfWorldTree
         {
             if(JobID == 0)
             {
-                return Str + Vit / 2;
+                return Str + Vit;
             }
             else if(JobID == 1)
             {
-                return Tec + Luc / 2;
+                return Tec + Luc;
             }
             else if(JobID == 2)
             {
-                return Tec + Wis / 2;
+                return Tec + Wis;
             }
 
             return 0;
@@ -196,7 +198,7 @@ namespace LabyrinthOfWorldTree
 
         public void SetPlayerMaxHealth()
         {
-            MaxHealth = 50 + Vit * 5 + (Level - 1) * 5;
+            MaxHealth = 100 + Vit * 5 + (Level - 1) * 5; 
         }
 
         public void SetPlayerName()

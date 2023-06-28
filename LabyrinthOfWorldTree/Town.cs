@@ -258,382 +258,385 @@ namespace LabyrinthOfWorldTree
                 }
                 else if (Select == 2)
                 {
-                    LastInput = '0';
-                    Select = -1;
-
-                    choice = 0;
-
-                    Console.SetCursorPosition(10, 16);
-                    Console.Write("미궁 1층");
-
-                    Console.SetCursorPosition(8, 16 + choice);
-                    Console.Write("▷");
-
-                    Console.SetCursorPosition(0, 32);
-                    input = Console.ReadKey();
-
-                    Console.SetCursorPosition(8, 16 + choice);
-                    Console.Write("　");
-
-                    switch (input.KeyChar)
+                    while (true)
                     {
-                        case 'w':
-                        case 'W':
-                        case 'ㅈ':
-                            choice--;
+                        LastInput = '0';
+                        Select = -1;
 
-                            if (choice == -1)
-                            {
-                                choice = 0;
-                            }
+                        choice = 0;
 
-                            Console.SetCursorPosition(8, 16 + choice);
-                            Console.Write("▷");
+                        Console.SetCursorPosition(10, 16);
+                        Console.Write("미궁 1층");
 
-                            break;
-                        case 's':
-                        case 'S':
-                        case 'ㄴ':
-                            choice++;
+                        Console.SetCursorPosition(8, 16 + choice);
+                        Console.Write("▷");
 
-                            if (choice == 1)
-                            {
-                                choice = 0;
-                            }
+                        Console.SetCursorPosition(0, 32);
+                        input = Console.ReadKey();
 
-                            Console.SetCursorPosition(8, 16 + choice);
-                            Console.Write("▷");
+                        Console.SetCursorPosition(8, 16 + choice);
+                        Console.Write("　");
 
-                            break;
-                        case 'e':
-                        case 'E':
-                        case 'ㄷ':
-                            Console.SetCursorPosition(8, 16 + choice);
-                            Console.Write("▶");
-
-                            Console.WriteLine("미궁 1층에 입장합니다");
-
-                            Select = choice;
-
-                            break;
-                        case 'q':
-                        case 'Q':
-                        case 'ㅂ':
-                            Console.SetCursorPosition(10, 19);
-                            Console.Write("마을로 들어갑니다");
-
-                            Console.ReadLine();
-                            Console.Clear();
-
-                            LastInput = 'q';
-
-                            break;
-                    }
-
-                    if (Select == 0)
-                    {
-                        RandomMap map = new RandomMap();
-                        Random random = new Random();
-
-                        int direction = 0; // 0 : ↑, 1 : ←, 2 : ↓, 3 : →
-
-                        int nextX = map.PlayerXPos;
-                        int nextY = map.PlayerYPos;
-
-                        int incountRate = 0;
-
-                        PrintCharacterView();
-
-                        while (true)        // 탐험
+                        switch (input.KeyChar)
                         {
-                            map.PrintTheMap();
+                            case 'w':
+                            case 'W':
+                            case 'ㅈ':
+                                choice--;
 
-                            Console.SetCursorPosition(0, 32);
-                            input = Console.ReadKey();
+                                if (choice == -1)
+                                {
+                                    choice = 0;
+                                }
 
-                            switch (input.KeyChar)
-                            {
-                                case 'w':
-                                case 'W':
-                                case 'ㅈ':
-                                    switch (direction)
-                                    {
-                                        case 0:
-                                            if (map.theMap[nextY - 1, nextX] == map.Blank)
-                                            {
-                                                nextY -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if(map.theMap[nextY - 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
+                                Console.SetCursorPosition(8, 16 + choice);
+                                Console.Write("▷");
 
-                                            break;
-                                        case 1:
-                                            if (map.theMap[nextY, nextX - 1] == map.Blank)
-                                            {
-                                                nextX -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX - 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 2:
-                                            if (map.theMap[nextY + 1, nextX] == map.Blank)
-                                            {
-                                                nextY += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY + 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 3:
-                                            if (map.theMap[nextY, nextX + 1] == map.Blank)
-                                            {
-                                                nextX += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX + 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                    }
-
-                                    break;
-                                case 'a':
-                                case 'A':
-                                case 'ㅁ':
-                                    direction += 1;
-
-                                    if (direction == 4)
-                                    {
-                                        direction = 0;
-                                    }
-
-                                    break;
-                                case 's':
-                                case 'S':
-                                case 'ㄴ':
-                                    switch (direction)
-                                    {
-                                        case 0:
-                                            if (map.theMap[nextY + 1, nextX] == map.Blank)
-                                            {
-                                                nextY += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY + 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 1:
-                                            if (map.theMap[nextY, nextX + 1] == map.Blank)
-                                            {
-                                                nextX += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX + 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 2:
-                                            if (map.theMap[nextY - 1, nextX] == map.Blank)
-                                            {
-                                                nextY -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY - 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 3:
-                                            if (map.theMap[nextY, nextX - 1] == map.Blank)
-                                            {
-                                                nextX -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX - 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                    }
-
-                                    break;
-                                case 'd':
-                                case 'D':
-                                case 'ㅇ':
-                                    direction -= 1;
-
-                                    if (direction == -1)
-                                    {
-                                        direction = 3;
-                                    }
-
-                                    break;
-                                case 'q':
-                                case 'Q':
-                                case 'ㅂ':
-                                    switch (direction)
-                                    {
-                                        case 0:
-                                            if (map.theMap[nextY, nextX - 1] == map.Blank)
-                                            {
-                                                nextX -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX - 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 1:
-                                            if (map.theMap[nextY + 1, nextX] == map.Blank)
-                                            {
-                                                nextY += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY + 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 2:
-                                            if (map.theMap[nextY, nextX + 1] == map.Blank)
-                                            {
-                                                nextX += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX + 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 3:
-                                            if (map.theMap[nextY - 1, nextX] == map.Blank)
-                                            {
-                                                nextY -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY - 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                    }
-                                    break;
-                                case 'e':
-                                case 'E':
-                                case 'ㄷ':
-                                    switch (direction)
-                                    {
-                                        case 0:
-                                            if (map.theMap[nextY, nextX + 1] == map.Blank)
-                                            {
-                                                nextX += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX + 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 1:
-                                            if (map.theMap[nextY - 1, nextX] == map.Blank)
-                                            {
-                                                nextY -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY - 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 2:
-                                            if (map.theMap[nextY, nextX - 1] == map.Blank)
-                                            {
-                                                nextX -= 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY, nextX - 1] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                        case 3:
-                                            if (map.theMap[nextY + 1, nextX] == map.Blank)
-                                            {
-                                                nextY += 1;
-                                                map.SetPlayerPosition(nextX, nextY);
-                                                incountRate += random.Next(1, 11);
-                                            }
-                                            else if (map.theMap[nextY + 1, nextX] == map.UpStair)
-                                            {
-                                                LastInput = 'q';
-                                            }
-
-                                            break;
-                                    }
-                                    break;
-                            }
-
-                            if (incountRate >= 100)
-                            {
-                                Battle battle = new Battle();
-                                battle.SetMonsters();
-                                battle.RunBattle(thePlayer);
-
-                                incountRate -= 100;
-                            }
-
-                            if (LastInput == 'q')
-                            {
                                 break;
-                            }
-                        }           // while() 탐험
-                    }
+                            case 's':
+                            case 'S':
+                            case 'ㄴ':
+                                choice++;
 
-                    if (LastInput == 'q')
-                    {
-                        break;
+                                if (choice == 1)
+                                {
+                                    choice = 0;
+                                }
+
+                                Console.SetCursorPosition(8, 16 + choice);
+                                Console.Write("▷");
+
+                                break;
+                            case 'e':
+                            case 'E':
+                            case 'ㄷ':
+                                Console.SetCursorPosition(8, 16 + choice);
+                                Console.Write("▶");
+
+                                Console.WriteLine("미궁 1층에 입장합니다");
+
+                                Select = choice;
+
+                                break;
+                            case 'q':
+                            case 'Q':
+                            case 'ㅂ':
+                                Console.SetCursorPosition(10, 19);
+                                Console.Write("마을로 들어갑니다");
+
+                                Console.ReadLine();
+                                Console.Clear();
+
+                                LastInput = 'q';
+
+                                break;
+                        }
+
+                        if (Select == 0)
+                        {
+                            RandomMap map = new RandomMap();
+                            Random random = new Random();
+                            Battle battle = new Battle();
+
+                            int direction = 0; // 0 : ↑, 1 : ←, 2 : ↓, 3 : →
+
+                            int nextX = map.PlayerXPos;
+                            int nextY = map.PlayerYPos;
+
+                            int incountRate = 0;
+
+                            PrintCharacterView();
+
+                            while (true)        // 탐험
+                            {
+                                map.PrintTheMap();
+
+                                Console.SetCursorPosition(0, 32);
+                                input = Console.ReadKey();
+
+                                switch (input.KeyChar)
+                                {
+                                    case 'w':
+                                    case 'W':
+                                    case 'ㅈ':
+                                        switch (direction)
+                                        {
+                                            case 0:
+                                                if (map.theMap[nextY - 1, nextX] == map.Blank)
+                                                {
+                                                    nextY -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY - 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 1:
+                                                if (map.theMap[nextY, nextX - 1] == map.Blank)
+                                                {
+                                                    nextX -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX - 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 2:
+                                                if (map.theMap[nextY + 1, nextX] == map.Blank)
+                                                {
+                                                    nextY += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY + 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 3:
+                                                if (map.theMap[nextY, nextX + 1] == map.Blank)
+                                                {
+                                                    nextX += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX + 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                        }
+
+                                        break;
+                                    case 'a':
+                                    case 'A':
+                                    case 'ㅁ':
+                                        direction += 1;
+
+                                        if (direction == 4)
+                                        {
+                                            direction = 0;
+                                        }
+
+                                        break;
+                                    case 's':
+                                    case 'S':
+                                    case 'ㄴ':
+                                        switch (direction)
+                                        {
+                                            case 0:
+                                                if (map.theMap[nextY + 1, nextX] == map.Blank)
+                                                {
+                                                    nextY += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY + 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 1:
+                                                if (map.theMap[nextY, nextX + 1] == map.Blank)
+                                                {
+                                                    nextX += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX + 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 2:
+                                                if (map.theMap[nextY - 1, nextX] == map.Blank)
+                                                {
+                                                    nextY -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY - 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 3:
+                                                if (map.theMap[nextY, nextX - 1] == map.Blank)
+                                                {
+                                                    nextX -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX - 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                        }
+
+                                        break;
+                                    case 'd':
+                                    case 'D':
+                                    case 'ㅇ':
+                                        direction -= 1;
+
+                                        if (direction == -1)
+                                        {
+                                            direction = 3;
+                                        }
+
+                                        break;
+                                    case 'q':
+                                    case 'Q':
+                                    case 'ㅂ':
+                                        switch (direction)
+                                        {
+                                            case 0:
+                                                if (map.theMap[nextY, nextX - 1] == map.Blank)
+                                                {
+                                                    nextX -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX - 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 1:
+                                                if (map.theMap[nextY + 1, nextX] == map.Blank)
+                                                {
+                                                    nextY += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY + 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 2:
+                                                if (map.theMap[nextY, nextX + 1] == map.Blank)
+                                                {
+                                                    nextX += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX + 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 3:
+                                                if (map.theMap[nextY - 1, nextX] == map.Blank)
+                                                {
+                                                    nextY -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY - 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                        }
+                                        break;
+                                    case 'e':
+                                    case 'E':
+                                    case 'ㄷ':
+                                        switch (direction)
+                                        {
+                                            case 0:
+                                                if (map.theMap[nextY, nextX + 1] == map.Blank)
+                                                {
+                                                    nextX += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX + 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 1:
+                                                if (map.theMap[nextY - 1, nextX] == map.Blank)
+                                                {
+                                                    nextY -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY - 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 2:
+                                                if (map.theMap[nextY, nextX - 1] == map.Blank)
+                                                {
+                                                    nextX -= 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY, nextX - 1] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                            case 3:
+                                                if (map.theMap[nextY + 1, nextX] == map.Blank)
+                                                {
+                                                    nextY += 1;
+                                                    map.SetPlayerPosition(nextX, nextY);
+                                                    incountRate += random.Next(1, 11);
+                                                }
+                                                else if (map.theMap[nextY + 1, nextX] == map.UpStair)
+                                                {
+                                                    LastInput = 'q';
+                                                }
+
+                                                break;
+                                        }
+                                        break;
+                                }
+
+                                if (incountRate >= 100)
+                                {
+                                    battle.SetMonsters();
+                                    battle.RunBattle(thePlayer);
+
+                                    incountRate -= 100;
+                                }
+
+                                if (LastInput == 'q')
+                                {
+                                    break;
+                                }
+                            }           // while() 탐험
+                        }
+
+                        if (LastInput == 'q')
+                        {
+                            break;
+                        }
                     }
                 }
             }           // while() 마을
@@ -641,6 +644,7 @@ namespace LabyrinthOfWorldTree
 
         public void PrintCharacterView()
         {
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
             Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");
             Console.WriteLine("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　");

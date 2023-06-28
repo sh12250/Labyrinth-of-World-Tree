@@ -34,9 +34,13 @@ namespace LabyrinthOfWorldTree
 
             int monsterCount = random.Next(1, 4);
 
+            int randIdx = 0;
+
             for (int i = 0; i < monsterCount; i++)
             {
-                Monsters.Add(MonsterBases[random.Next(0, 4)]);
+                randIdx = random.Next(0, 4);
+                Monsters.Add(new MonsterBase());
+                Monsters[i].SetMonsterStatus(MonsterBases[randIdx].Name, MonsterBases[randIdx].Health, MonsterBases[randIdx].Atk, MonsterBases[randIdx].Def, MonsterBases[randIdx].Exp);
             }
         }
 
@@ -174,6 +178,10 @@ namespace LabyrinthOfWorldTree
                         break;
                 }
 
+                if(thePlayer.Health == 0)
+                {
+                    break;
+                }
 
             }           // while()
         }

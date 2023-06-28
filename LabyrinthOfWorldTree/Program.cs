@@ -28,7 +28,15 @@ namespace LabyrinthOfWorldTree
 
             player.SetPlayerStatus();
 
-            town.TownScene(player);
+            while (true)
+            {
+                if(player.Health == 0)
+                {
+                    break;
+                }
+                
+                town.TownScene(player);
+            }
         }
     }
 }
