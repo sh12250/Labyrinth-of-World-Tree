@@ -9,6 +9,7 @@ namespace LabyrinthOfWorldTree
     public class Town
     {
         public Pub ThePub { get; private set; }
+        public Shop TheShop { get; private set; }
         public int Select { get; private set; }
         public char LastInput { get; private set; }
 
@@ -16,6 +17,7 @@ namespace LabyrinthOfWorldTree
         public Town()
         {
             ThePub = new Pub();
+            TheShop = new Shop();
         }
 
 
@@ -62,9 +64,6 @@ namespace LabyrinthOfWorldTree
                             choice = 2;
                         }
 
-                        Console.SetCursorPosition(8, 15 + choice);
-                        Console.Write("▷");
-
                         break;
                     case 's':
                     case 'S':
@@ -75,9 +74,6 @@ namespace LabyrinthOfWorldTree
                         {
                             choice = 0;
                         }
-
-                        Console.SetCursorPosition(8, 15 + choice);
-                        Console.Write("▷");
 
                         break;
                     case 'e':
@@ -135,7 +131,100 @@ namespace LabyrinthOfWorldTree
 
                 if (Select == 0)
                 {
-                    // 상점
+                    Console.Clear();
+
+                    choice = 0;
+
+                    while (true) // 상점
+                    {
+                        Console.SetCursorPosition(10, 15);
+                        Console.Write("아이템 구매");
+                        Console.SetCursorPosition(10, 16);
+                        Console.Write("아이템 판매");
+
+                        Console.SetCursorPosition(8, 15 + choice);
+                        Console.Write("▷");
+
+                        Console.SetCursorPosition(0, 32);
+                        input = Console.ReadKey();
+
+                        Console.SetCursorPosition(8, 15 + choice);
+                        Console.Write("　");
+
+                        switch (input.KeyChar)
+                        {
+                            case 'w':
+                            case 'W':
+                            case 'ㅈ':
+                                choice -= 1;
+
+                                if (choice == -1)
+                                {
+                                    choice = 1;
+                                }
+
+                                break;
+                            case 's':
+                            case 'S':
+                            case 'ㄴ':
+                                choice += 1;
+
+                                if (choice == 2)
+                                {
+                                    choice = 0;
+                                }
+
+                                break;
+                            case 'e':
+                            case 'E':
+                            case 'ㄷ':
+                                Console.SetCursorPosition(8, 15 + choice);
+                                Console.Write("▶");
+
+                                if (choice == 0)
+                                {
+                                    Console.SetCursorPosition(10, 18);
+                                    Console.Write("아이템을 구매하러 갑니다");
+
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                }
+                                else if (choice == 1)
+                                {
+                                    Console.SetCursorPosition(10, 18);
+                                    Console.Write("아이템을 판매하러 갑니다");
+
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                }
+
+                                Select = choice;
+
+                                break;
+                            case 'q':
+                            case 'Q':
+                            case 'ㅂ':
+                                Console.SetCursorPosition(10, 18);
+                                Console.Write("마을로 돌아갑니다");
+
+                                Console.ReadLine();
+                                Console.Clear();
+
+                                LastInput = 'q';
+
+                                break;
+                        }
+
+                        if (LastInput == 'q')
+                        {
+                            break;
+                        }
+
+                        if(Select == 0)
+                        {
+                            TheShop.BuyItem(thePlayer);
+                        }
+                    }
                 }
                 else if (Select == 1)
                 {
@@ -290,9 +379,6 @@ namespace LabyrinthOfWorldTree
                                     choice = 0;
                                 }
 
-                                Console.SetCursorPosition(8, 16 + choice);
-                                Console.Write("▷");
-
                                 break;
                             case 's':
                             case 'S':
@@ -303,9 +389,6 @@ namespace LabyrinthOfWorldTree
                                 {
                                     choice = 0;
                                 }
-
-                                Console.SetCursorPosition(8, 16 + choice);
-                                Console.Write("▷");
 
                                 break;
                             case 'e':

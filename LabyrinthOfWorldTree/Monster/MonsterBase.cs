@@ -16,7 +16,6 @@ namespace LabyrinthOfWorldTree
         public int Atk { get; private set; }
         public int Def { get; private set; }
         public int Exp { get; private set; }
-        // public int Gold { get; private set; }
 
         public virtual void SetMonsterStatus(string name_, int health_, int atk_, int def_, int exp_)
         {

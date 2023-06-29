@@ -31,7 +31,7 @@ namespace LabyrinthOfWorldTree
 
         public int MaxEXP { get; private set; }
         public int EXP { get; private set; }
-        // public int Gold { get; private set; }
+        public int Gold { get; private set; }
 
 
         public Player()
@@ -95,6 +95,7 @@ namespace LabyrinthOfWorldTree
             Health = MaxHealth;
             MaxEXP = 100;
             EXP = 0;
+            Gold = 0;
         }
 
         public void LevelUpPlayer()
@@ -108,6 +109,7 @@ namespace LabyrinthOfWorldTree
                     if (random.Next(100) < values.StrUpRate[JobID])
                     {
                         Str += 1;
+                        Atk += 1;
                     }
 
                     if (random.Next(100) < values.TecUpRate[JobID])
@@ -118,16 +120,18 @@ namespace LabyrinthOfWorldTree
                     if (random.Next(100) < values.VitUpRate[JobID])
                     {
                         Vit += 1;
+                        Atk += 1;
+                        Def += 2;
                     }
 
                     if (random.Next(100) < values.WisUpRate[JobID])
                     {
-                        Luc += 1;
+                        Wis += 1;
                     }
 
                     if (random.Next(100) < values.LucUpRate[JobID])
                     {
-                        Wis += 1;
+                        Luc += 1;
                     }
 
                     break;
@@ -140,21 +144,24 @@ namespace LabyrinthOfWorldTree
                     if (random.Next(100) < values.TecUpRate[JobID])
                     {
                         Tec += 1;
+                        Atk += 1;
                     }
 
                     if (random.Next(100) < values.VitUpRate[JobID])
                     {
                         Vit += 1;
+                        Def += 2;
                     }
 
                     if (random.Next(100) < values.WisUpRate[JobID])
                     {
-                        Luc += 1;
+                        Wis += 1;
                     }
 
                     if (random.Next(100) < values.LucUpRate[JobID])
                     {
-                        Wis += 1;
+                        Luc += 1;
+                        Atk += 1;
                     }
 
                     break;
@@ -167,28 +174,30 @@ namespace LabyrinthOfWorldTree
                     if (random.Next(100) < values.TecUpRate[JobID])
                     {
                         Tec += 1;
+                        Atk += 1;
                     }
 
                     if (random.Next(100) < values.VitUpRate[JobID])
                     {
                         Vit += 1;
+                        Def += 2;
                     }
 
                     if (random.Next(100) < values.WisUpRate[JobID])
                     {
-                        Luc += 1;
+                        Wis += 1;
                     }
 
                     if (random.Next(100) < values.LucUpRate[JobID])
                     {
-                        Wis += 1;
+                        Luc += 1;
+                        Atk += 1;
                     }
 
                     break;
             }
 
             SetPlayerMaxHealth();
-            Health = MaxHealth;
             EXP -= MaxEXP;
             MaxEXP += (int)(MaxEXP * 0.1f);
         }
@@ -196,6 +205,7 @@ namespace LabyrinthOfWorldTree
         public void SetPlayerMaxHealth()
         {
             MaxHealth = 100 + Vit * 5 + (Level - 1) * 5;
+            Health = MaxHealth;
         }
 
         public void SetPlayerName()

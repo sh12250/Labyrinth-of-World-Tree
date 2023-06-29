@@ -22,11 +22,11 @@ namespace LabyrinthOfWorldTree
 
             if (ItemID > 100 && ItemID < 201)
             {
-                ItemType = "무기";
+                ItemType = "무기　　";
             }
             else if (ItemID > 200 && ItemID < 301)
             {
-                ItemType = "방어구";
+                ItemType = "방어구　";
             }
             else if (ItemID > 300 && ItemID < 401)
             {
@@ -34,11 +34,11 @@ namespace LabyrinthOfWorldTree
             }
             else if (ItemID > 400 && ItemID < 501)
             {
-                ItemType = "소모품";
+                ItemType = "소모품　";
             }
             else if (ItemID > 500 && ItemID < 601)
             {
-                ItemType = "환금";
+                ItemType = "환금　　";
             }
 
             ItemName = name_;
