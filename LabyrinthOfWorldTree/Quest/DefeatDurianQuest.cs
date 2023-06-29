@@ -13,12 +13,12 @@ namespace LabyrinthOfWorldTree
         {
             Durian value = new Durian();
 
-            SetQuestStatus("소중한 내 코", value.Name, 10, 630);
+            SetQuestStatus("소중한 내 코", value.Name, 10, 630, 630);
         }
 
-        public override void SetQuestStatus(string name_, string target_, int targetNum_, int exp_)
+        public override void SetQuestStatus(string name_, string target_, int targetNum_, int exp_, int gold_)
         {
-            base.SetQuestStatus(name_, target_, targetNum_, exp_);
+            base.SetQuestStatus(name_, target_, targetNum_, exp_, gold_);
         }
         public override void PlusCount()
         {

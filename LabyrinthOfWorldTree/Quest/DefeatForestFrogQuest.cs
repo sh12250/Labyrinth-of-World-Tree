@@ -13,12 +13,12 @@ namespace LabyrinthOfWorldTree
         {
             ForestFrog value = new ForestFrog();
 
-            SetQuestStatus("소음의 원인", value.Name, 10, 950);
+            SetQuestStatus("소음의 원인", value.Name, 10, 950, 950);
         }
 
-        public override void SetQuestStatus(string name_, string target_, int targetNum_, int exp_)
+        public override void SetQuestStatus(string name_, string target_, int targetNum_, int exp_, int gold_)
         {
-            base.SetQuestStatus(name_, target_, targetNum_, exp_);
+            base.SetQuestStatus(name_, target_, targetNum_, exp_, gold_);
         }
         public override void PlusCount()
         {
