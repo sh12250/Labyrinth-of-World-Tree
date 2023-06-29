@@ -44,7 +44,7 @@ namespace LabyrinthOfWorldTree
         public void SetQuestList(List<QuestBase> theQuestBoard)
         {
             QuestList = null;
-
+            
             if (theQuestBoard != null)
             {
                 QuestList = theQuestBoard;

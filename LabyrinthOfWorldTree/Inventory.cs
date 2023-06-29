@@ -20,9 +20,14 @@ namespace LabyrinthOfWorldTree
             }
         }
 
-        public void PlusItemCount(string key_)
+        public void PlusItemCount(string itemName_)
         {
-            NameAndCount[key_]++;
+            NameAndCount[itemName_]++;
+        }
+
+        public void MinusItemCount(string itemName_)
+        {
+            NameAndCount[itemName_]--;
         }
     }
 }
