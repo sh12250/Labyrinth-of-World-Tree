@@ -6,10 +6,23 @@ using System.Threading.Tasks;
 
 namespace LabyrinthOfWorldTree
 {
-    internal class Inventory
+    public class Inventory : Item
     {
         public Dictionary<string, int> NameAndCount { get; private set; }
 
+        public Inventory()
+        {
+            NameAndCount = new Dictionary<string, int>();
 
+            for (int i = 0; i < Items.Count; i++)
+            {
+                NameAndCount.Add(Items[i].ItemName, 0);
+            }
+        }
+
+        public void PlusItemCount(string key_)
+        {
+            NameAndCount[key_]++;
+        }
     }
 }

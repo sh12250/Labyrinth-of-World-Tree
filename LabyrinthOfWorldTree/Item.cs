@@ -8,13 +8,13 @@ namespace LabyrinthOfWorldTree
 {
     public class Item
     {
-        public List<ItemBase> Items {  get; private set; }
+        protected List<ItemBase> Items { get; private set; }
 
         public Item()
         {
             Items = new List<ItemBase>();
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 22; i++)
             {
                 Items.Add(new ItemBase());
             }
@@ -37,9 +37,10 @@ namespace LabyrinthOfWorldTree
             Items[15].SetItemStatus(302, "체력의 팔찌", 200, 0, 0, 0, 0, 3, 0, 0);
             Items[16].SetItemStatus(303, "지혜의 피어스", 200, 0, 0, 0, 0, 0, 3, 0);
             Items[17].SetItemStatus(304, "운의 네클리스", 200, 0, 0, 0, 0, 0, 0, 3);
-            Items[18].SetItemStatus(400, "메디카", 200, 0, 0, 0, 0, 0, 0, 3);
-            Items[19].SetItemStatus(401, "", 200, 0, 0, 0, 0, 0, 0, 3);
-            Items[20].SetItemStatus(402, "", 200, 0, 0, 0, 0, 0, 0, 3);
+            Items[18].SetItemStatus(400, "작고 붉은 비늘", 6, 0, 0, 0, 0, 0, 0, 0);
+            Items[19].SetItemStatus(401, "미끈미끈한 다리", 8, 0, 0, 0, 0, 0, 0, 0);
+            Items[20].SetItemStatus(402, "푸르른 가시관", 10, 0, 0, 0, 0, 0, 0, 0);
+            Items[21].SetItemStatus(403, "스라소니의 흑조", 20, 0, 0, 0, 0, 0, 0, 0);
         }
     }
 }
