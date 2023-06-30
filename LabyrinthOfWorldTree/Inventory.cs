@@ -30,12 +30,12 @@ namespace LabyrinthOfWorldTree
 
         public void PlusItemCount(int itemIdx_)
         {
-            IdxAndCount[itemIdx_]++;
+            IdxAndCount[itemIdx_] += 1;
         }
 
         public void MinusItemCount(int itemIdx_)
         {
-            IdxAndCount[itemIdx_]--;
+            IdxAndCount[itemIdx_] -= 1;
         }
     }
 }

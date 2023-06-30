@@ -243,6 +243,16 @@ namespace LabyrinthOfWorldTree
                 Health = 0;
             }
         }
+
+        public void PlusPlayerGold(int money)
+        {
+            Gold += money;
+        }
+
+        public void MinusPlayerGold(int money)
+        {
+            Gold -= money;
+        }
     }
 }
 

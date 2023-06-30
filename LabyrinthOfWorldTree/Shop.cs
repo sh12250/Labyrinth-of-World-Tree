@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LabyrinthOfWorldTree
@@ -46,6 +47,9 @@ namespace LabyrinthOfWorldTree
                         Console.Write("{0}　{1}　{2}", Items[idx + i].ItemType, Items[idx + i].ItemName, Items[idx + i].ItemPrice);
                     }
                 }
+
+                Console.SetCursorPosition(10, 5);
+                Console.Write("소지금 : {0}", thePlayer.Gold);
 
                 Console.SetCursorPosition(8, 14 + choice);
                 Console.Write("▷");
@@ -146,6 +150,8 @@ namespace LabyrinthOfWorldTree
 
                             Console.SetCursorPosition(10, 20);
                             Console.Write("{0}를 구입했습니다", Items[idx + choice].ItemName);
+
+                            thePlayer.MinusPlayerGold(Items[idx + choice].ItemPrice);
 
                             Console.ReadLine();
                             Console.Clear();
@@ -260,6 +266,14 @@ namespace LabyrinthOfWorldTree
                         }
                     }
                 }
+
+                if (choice > count - 1)
+                {
+                    choice = count - 1;
+                }
+
+                Console.SetCursorPosition(10, 5);
+                Console.Write("소지금 : {0}", thePlayer.Gold);
 
                 Console.SetCursorPosition(8, 14 + choice);
                 Console.Write("▷");
@@ -474,13 +488,18 @@ namespace LabyrinthOfWorldTree
                         Console.SetCursorPosition(8, 14 + choice);
                         Console.Write("▶");
 
-                        thePlayer.Inven.MinusItemCount(itemIds[idx + choice]);
-
                         Console.SetCursorPosition(10, 20);
                         Console.Write("{0}를 판매했습니다", Items[itemIds[idx + choice]].ItemName);
 
-                        itemIds.Remove(itemIds[idx + choice]);
-                        count -= 1;
+                        thePlayer.PlusPlayerGold(Items[itemIds[idx + choice]].ItemPrice / 2);
+
+                        thePlayer.Inven.MinusItemCount(itemIds[idx + choice]);
+
+                        if (thePlayer.Inven.IdxAndCount[itemIds[idx + choice]] == 0)
+                        {
+                            itemIds.Remove(itemIds[idx + choice]);
+                            count -= 1;
+                        }
 
                         Console.ReadLine();
                         Console.Clear();
