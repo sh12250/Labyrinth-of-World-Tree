@@ -242,5 +242,93 @@ namespace LabyrinthOfWorldTree
                     break;
             }
         }
+
+        public void SwapEquipment(Player thePlayer)
+        {
+            ConsoleKeyInfo input;
+            int select = -1;
+            int choice = 0;
+
+            List<int> idx = new List<int>();
+
+            while (true)
+            {
+                Console.SetCursorPosition(10, 12);
+                Console.Write("장비창");
+
+                Console.SetCursorPosition(10, 14);
+                Console.Write("무기　　　:　{0}　　　　　　", thePlayer.Equitment[0]);
+                Console.SetCursorPosition(10, 15);
+                Console.Write("방어구　　:　{0}　　　　　　", thePlayer.Equitment[1]);
+                Console.SetCursorPosition(10, 16);
+                Console.Write("악세사리　:　{0}　　　　　　", thePlayer.Equitment[2]);
+
+                Console.SetCursorPosition(10, 14 + choice);
+                Console.Write("▷");
+
+                Console.SetCursorPosition(0, 32);
+                input = Console.ReadKey();
+
+                Console.SetCursorPosition(10, 14 + choice);
+                Console.Write("　");
+
+                switch (input.KeyChar)
+                {
+                    case 'w':
+                    case 'W':
+                    case 'ㅈ':
+                        choice -= 1;
+
+                        if (choice == -1)
+                        {
+                            choice = 2;
+                        }
+
+                        break;
+                    case 's':
+                    case 'S':
+                    case 'ㄴ':
+                        choice += 1;
+
+                        if (choice == 3)
+                        {
+                            choice = 0;
+                        }
+
+                        break;
+                    case 'e':
+                    case 'E':
+                    case 'ㄷ':
+                        Console.SetCursorPosition(10, 14 + choice);
+                        Console.Write("▶");
+
+                        select = choice;
+
+                        break;
+                    case 'q':
+                    case 'Q':
+                    case 'ㅂ':
+                        break;
+                }
+
+                if (select == 0)
+                {
+                    for (int i = 0; i < 24; i++)
+                    {
+                        if (1 > 0)
+                        {
+
+                        }
+                    }
+
+                    Console.SetCursorPosition(0, 0);
+                    for (int i = 0; i < 1; i++)
+                    {
+
+                    }
+
+                }
+            }
+        }
     }
 }

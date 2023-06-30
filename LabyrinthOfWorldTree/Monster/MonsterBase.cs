@@ -33,7 +33,7 @@ namespace LabyrinthOfWorldTree
 
             if (damage <= 0)
             {
-                damage = 0;
+                damage = 1;
             }
 
             Health -= damage;

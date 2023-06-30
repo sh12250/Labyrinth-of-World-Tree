@@ -9,7 +9,7 @@ namespace LabyrinthOfWorldTree
     public class Player
     {
         public List<QuestBase> QuestList { get; private set; }
-        public List<ItemBase> Equitment { get; private set; }
+        public string[] Equitment { get; private set; }
         public Inventory Inven { get; private set; }
 
         public string Name { get; private set; }
@@ -38,6 +38,10 @@ namespace LabyrinthOfWorldTree
         {
             QuestList = new List<QuestBase>();
             Inven = new Inventory();
+            Equitment = new string[3];
+            Equitment[0] = "없음";
+            Equitment[1] = "없음";
+            Equitment[2] = "없음";
         }
 
 
@@ -233,7 +237,7 @@ namespace LabyrinthOfWorldTree
 
             if (damage <= 0)
             {
-                damage = 0;
+                damage = 1;
             }
 
             Health -= damage;
@@ -242,6 +246,11 @@ namespace LabyrinthOfWorldTree
             {
                 Health = 0;
             }
+        }
+
+        public void PlusPlayerEXP(int exp)
+        {
+            EXP += exp;
         }
 
         public void PlusPlayerGold(int money)

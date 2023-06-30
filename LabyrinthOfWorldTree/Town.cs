@@ -223,11 +223,11 @@ namespace LabyrinthOfWorldTree
                             break;
                         }
 
-                        if(Select == 0)
+                        if (Select == 0)
                         {
                             TheShop.BuyItem(thePlayer);
                         }
-                        else if(Select == 1)
+                        else if (Select == 1)
                         {
                             TheShop.SellItem(thePlayer);
                         }
@@ -440,6 +440,11 @@ namespace LabyrinthOfWorldTree
 
                             while (true)        // 탐험
                             {
+                                if (thePlayer.Health == 0)
+                                {
+                                    break;
+                                }
+
                                 map.PrintTheMap();
 
                                 Console.SetCursorPosition(0, 32);
@@ -725,7 +730,7 @@ namespace LabyrinthOfWorldTree
                             }           // while() 탐험
                         }
 
-                        if (LastInput == 'q')
+                        if (LastInput == 'q' || thePlayer.Health == 0)
                         {
                             break;
                         }

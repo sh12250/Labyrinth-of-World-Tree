@@ -14,8 +14,8 @@ namespace LabyrinthOfWorldTree
             Console.CursorVisible = false;
 
             Scenes scenes = new Scenes(); // MaxHp = 100, Hp = MaxHp
-            
-            
+
+
             Player player = new Player();
             Battle battle = new Battle();
             Town town = new Town();
@@ -30,15 +30,7 @@ namespace LabyrinthOfWorldTree
 
             player.SetPlayerStatus();
 
-            while (true)
-            {
-                if(player.Health == 0)
-                {
-                    break;
-                }
-                
-                town.TownScene(player);
-            }
+            town.TownScene(player);
         }
     }
 }
