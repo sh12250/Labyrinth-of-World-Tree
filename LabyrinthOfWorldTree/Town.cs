@@ -137,6 +137,9 @@ namespace LabyrinthOfWorldTree
 
                     while (true) // 상점
                     {
+                        LastInput = '0';
+                        Select = -1;
+
                         Console.SetCursorPosition(10, 15);
                         Console.Write("아이템 구매");
                         Console.SetCursorPosition(10, 16);
@@ -223,6 +226,10 @@ namespace LabyrinthOfWorldTree
                         if(Select == 0)
                         {
                             TheShop.BuyItem(thePlayer);
+                        }
+                        else if(Select == 1)
+                        {
+                            TheShop.SellItem(thePlayer);
                         }
                     }
                 }

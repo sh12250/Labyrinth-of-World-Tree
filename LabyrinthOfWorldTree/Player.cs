@@ -95,7 +95,7 @@ namespace LabyrinthOfWorldTree
             Health = MaxHealth;
             MaxEXP = 100;
             EXP = 0;
-            Gold = 0;
+            Gold = 100000;
         }
 
         public void LevelUpPlayer()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -141,7 +142,7 @@ namespace LabyrinthOfWorldTree
 
                         if (thePlayer.Gold >= Items[idx + choice].ItemPrice)
                         {
-                            thePlayer.Inven.PlusItemCount(Items[idx + choice].ItemName);
+                            thePlayer.Inven.PlusItemCount(idx + choice);
 
                             Console.SetCursorPosition(10, 20);
                             Console.Write("{0}를 구입했습니다", Items[idx + choice].ItemName);
@@ -183,8 +184,21 @@ namespace LabyrinthOfWorldTree
         public void SellItem(Player thePlayer)
         {
             ConsoleKeyInfo input;
+            List<int> itemIds = new List<int>();
             int choice = 0;
             int idx = 0;
+            int count = 0;
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (thePlayer.Inven.IdxAndCount[i] > 0)
+                {
+                    itemIds.Add(i);
+                    count++;
+                }
+
+                itemIds.Sort();
+            }
 
             LastInput = '0';
 
@@ -192,13 +206,59 @@ namespace LabyrinthOfWorldTree
 
             while (true)
             {
+                if (count == 0)
+                {
+                    Console.SetCursorPosition(10, 20);
+                    Console.Write("소지한 아이템이 없습니다");
+
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
+                }
+
                 Console.SetCursorPosition(10, 12);
                 Console.Write("종류　　　이름　　　　　　　　갯수");
-
-                for (int i = 0; i < 5; i++)
+                if (count <= 5)
                 {
-                    Console.SetCursorPosition(10, 14 + i);
-                    Console.Write("{0}　{1}　{2}", Items[idx + i].ItemType, Items[idx + i].ItemName, Items[idx + i].ItemPrice);
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (thePlayer.Inven.IdxAndCount[itemIds[idx + i]] < 10)
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　 {2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                        else if (thePlayer.Inven.IdxAndCount[itemIds[idx + i]] < 100)
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　  {2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　{2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (thePlayer.Inven.IdxAndCount[itemIds[idx + i]] < 10)
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　 {2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                        else if (thePlayer.Inven.IdxAndCount[itemIds[idx + i]] < 100)
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　  {2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(10, 14 + i);
+                            Console.Write("{0}　{1}　{2}", Items[itemIds[idx + i]].ItemType, Items[itemIds[idx + i]].ItemName, thePlayer.Inven.IdxAndCount[itemIds[idx + i]]);
+                        }
+                    }
                 }
 
                 Console.SetCursorPosition(8, 14 + choice);
@@ -217,17 +277,84 @@ namespace LabyrinthOfWorldTree
                     case 'ㅈ':
                         choice -= 1;
 
-                        if (choice < 0)
+                        if (count > 4)
                         {
-                            if (idx == 0)
+                            if (choice < 0)
                             {
-                                choice = 4;
-                                idx = 13;
+                                if (idx == 0)
+                                {
+                                    choice = 4;
+                                    idx = count - 5;
+                                }
+                                else
+                                {
+                                    choice = 0;
+                                    idx -= 1;
+                                }
                             }
-                            else
+                        }
+                        else if (count == 4)
+                        {
+                            if (choice < 0)
                             {
-                                choice = 0;
-                                idx -= 1;
+                                if (idx == 0)
+                                {
+                                    choice = 3;
+                                    idx = 0;
+                                }
+                                else
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
+                            }
+                        }
+                        else if (count == 3)
+                        {
+                            if (choice < 0)
+                            {
+                                if (idx == 0)
+                                {
+                                    choice = 2;
+                                    idx = 0;
+                                }
+                                else
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
+                            }
+                        }
+                        else if (count == 2)
+                        {
+                            if (choice < 0)
+                            {
+                                if (idx == 0)
+                                {
+                                    choice = 1;
+                                    idx = 0;
+                                }
+                                else
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
+                            }
+                        }
+                        else if (count == 1)
+                        {
+                            if (choice < 0)
+                            {
+                                if (idx == 0)
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
+                                else
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
                             }
                         }
 
@@ -255,35 +382,88 @@ namespace LabyrinthOfWorldTree
                     case 'ㄴ':
                         choice += 1;
 
-                        if (choice > 4)
+                        if (count > 4)
                         {
-                            if (idx == 13)
+                            if (choice > 4)
+                            {
+                                if (idx == count - 5)
+                                {
+                                    choice = 0;
+                                    idx = 0;
+                                }
+                                else
+                                {
+                                    choice = 4;
+                                    idx += 1;
+                                }
+                            }
+                        }
+                        else if (count == 4)
+                        {
+                            if (choice > 3)
                             {
                                 choice = 0;
-                                idx = 0;
                             }
-                            else
+                            idx = 0;
+                        }
+                        else if (count == 3)
+                        {
+                            if (choice > 2)
                             {
-                                choice = 4;
-                                idx += 1;
+                                choice = 0;
                             }
+
+                            idx = 0;
+                        }
+                        else if (count == 2)
+                        {
+                            if (choice > 1)
+                            {
+                                choice = 0;
+                            }
+
+                            idx = 0;
+                        }
+                        else if (count == 1)
+                        {
+                            choice = 0;
+                            idx = 0;
                         }
 
                         break;
                     case 'd':
                     case 'D':
                     case 'ㅇ':
-                        if (choice != 4)
+                        if (count > 4)
                         {
-                            choice = 4;
+                            if (choice != 4)
+                            {
+                                choice = 4;
+                            }
+                            else
+                            {
+                                idx += 5;
+
+                                if (idx > count - 5)
+                                {
+                                    idx = count - 5;
+                                }
+                            }
                         }
                         else
                         {
-                            idx += 5;
-
-                            if (idx > 13)
+                            if (choice != count - 1)
                             {
-                                idx = 13;
+                                choice = count - 1;
+                            }
+                            else
+                            {
+                                idx += 5;
+
+                                if (idx > count - 5)
+                                {
+                                    idx = count - 5;
+                                }
                             }
                         }
 
@@ -294,24 +474,16 @@ namespace LabyrinthOfWorldTree
                         Console.SetCursorPosition(8, 14 + choice);
                         Console.Write("▶");
 
-                        if (thePlayer.Gold >= Items[idx + choice].ItemPrice)
-                        {
-                            thePlayer.Inven.PlusItemCount(Items[idx + choice].ItemName);
+                        thePlayer.Inven.MinusItemCount(itemIds[idx + choice]);
 
-                            Console.SetCursorPosition(10, 20);
-                            Console.Write("{0}를 구입했습니다", Items[idx + choice].ItemName);
+                        Console.SetCursorPosition(10, 20);
+                        Console.Write("{0}를 판매했습니다", Items[itemIds[idx + choice]].ItemName);
 
-                            Console.ReadLine();
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.SetCursorPosition(10, 20);
-                            Console.Write("골드가 부족합니다");
+                        itemIds.Remove(itemIds[idx + choice]);
+                        count -= 1;
 
-                            Console.ReadLine();
-                            Console.Clear();
-                        }
+                        Console.ReadLine();
+                        Console.Clear();
 
                         break;
                     case 'q':
